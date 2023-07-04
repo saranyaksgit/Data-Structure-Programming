@@ -1,0 +1,205 @@
+#include<stdio.h>
+#define size 5
+int queue[size],front=-1,rear=-1,i,j,element;
+int ISFULL()
+{
+    if((front==rear+1)||(front==0&&rear==size-1))
+    return 1;
+    return 0;
+}
+int ISEMPTY()
+{
+    if(front==-1)
+    return 1;
+    return 0;
+}
+void enqueue()
+{
+    if(ISFULL())
+    {
+        printf("Queue is Full!!");
+    }
+    else
+    {
+        printf("Enter the element to be inserted :");
+        scanf("%d",&element);
+        if(front==-1)
+        front=0;
+        rear=(rear+1)%size;
+        queue[rear]=element;
+        printf("The element inserted is :%d\n",element);
+    }
+}
+void dequeue()
+{
+    if(ISEMPTY())
+    {
+        printf("Queue is Empty!!");
+    }
+    else
+    {
+        element=queue[front];
+        if(front==rear)
+        {
+            front=-1;
+            rear=-1;
+        }
+        else
+        {
+            front=(front+1)%size;
+        }
+        printf("The deleted element is :%d\n",element);
+    
+    }
+}
+void display()
+{
+    if(ISEMPTY())
+    {
+        printf("Queue is Empty");
+    }
+    else
+    {
+        printf("\nFront :%d",front);
+        printf("\nqueue :");
+        for(i=front;i<rear;i=(i+1)%size)
+        {
+            printf("%d\t",queue[i]);
+        }
+        printf("%d",queue[i]);
+        printf("\nRear  :%d\n",rear);
+    }
+}
+void search()
+{
+    int search;
+    printf("Enter the element to search :");
+    scanf("%d",&search);
+    if(ISEMPTY())
+    {
+        printf("Queue is Empty");
+    }
+    else
+    {
+        for(j=0;j<size;j++)
+        {
+            if(search==queue[j])
+            {
+                printf("The element is found\n");
+                return;
+            }
+            
+        }
+        if(search!=queue[j])
+        {
+            printf("The element was not found\n");
+            return;
+        }
+    }
+}
+void main()
+{
+    int choice;
+    while(1)
+    {
+        printf("\nPress 1 to INSERT element into Queue");
+        printf("\nPress 2 to DELETE element from Queue");
+        printf("\nPress 3 to DISPLAY element in the Queue");
+        printf("\nPress 4 to SEARCH element from the Queue");
+        printf("\nEnter your Choice :");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1:
+            enqueue();
+            break;
+            case 2:
+            dequeue();
+            break;
+            case 3:
+            display();
+            break;
+            case 4:
+            search();
+            break;
+            default:
+            printf("Enter valid option\n");
+        }
+    }
+}
+
+
+
+/*Press 1 to INSERT element into Queue
+Press 2 to DELETE element from Queue
+Press 3 to DISPLAY element in the Queue
+Press 4 to SEARCH element from the Queue
+Enter your Choice :1
+Enter the element to be inserted :10
+The element inserted is :10
+
+Press 1 to INSERT element into Queue
+Press 2 to DELETE element from Queue
+Press 3 to DISPLAY element in the Queue
+Press 4 to SEARCH element from the Queue
+Enter your Choice :1
+Enter the element to be inserted :20
+The element inserted is :20
+
+Press 1 to INSERT element into Queue
+Press 2 to DELETE element from Queue
+Press 3 to DISPLAY element in the Queue
+Press 4 to SEARCH element from the Queue
+Enter your Choice :3
+
+Front :0
+queue :10	20
+Rear  :1
+
+Press 1 to INSERT element into Queue
+Press 2 to DELETE element from Queue
+Press 3 to DISPLAY element in the Queue
+Press 4 to SEARCH element from the Queue
+Enter your Choice :3
+
+Front :0
+queue :10	20
+Rear  :1
+
+Press 1 to INSERT element into Queue
+Press 2 to DELETE element from Queue
+Press 3 to DISPLAY element in the Queue
+Press 4 to SEARCH element from the Queue
+Enter your Choice :2
+The deleted element is :10
+
+Press 1 to INSERT element into Queue
+Press 2 to DELETE element from Queue
+Press 3 to DISPLAY element in the Queue
+Press 4 to SEARCH element from the Queue
+Enter your Choice :3
+
+Front :1
+queue :20
+Rear  :1
+
+Press 1 to INSERT element into Queue
+Press 2 to DELETE element from Queue
+Press 3 to DISPLAY element in the Queue
+Press 4 to SEARCH element from the Queue
+Enter your Choice :4
+Enter the element to search :20
+The element is found
+
+Press 1 to INSERT element into Queue
+Press 2 to DELETE element from Queue
+Press 3 to DISPLAY element in the Queue
+Press 4 to SEARCH element from the Queue
+Enter your Choice :5
+Enter valid option
+
+Press 1 to INSERT element into Queue
+Press 2 to DELETE element from Queue
+Press 3 to DISPLAY element in the Queue
+Press 4 to SEARCH element from the Queue
+Enter your Choice :*/

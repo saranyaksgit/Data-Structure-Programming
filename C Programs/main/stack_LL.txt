@@ -1,0 +1,113 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node *link;
+}
+*top,*top1,*temp;
+void push();
+void pop();
+void display();
+void main()
+{
+    int num,choice;
+    printf("Stack using linked list\n");
+    printf("1.PUSH\n");
+    printf("2.POP\n");
+    printf("3.Display\n");
+    printf("4.Exit\n");
+    while(1)
+    {
+        printf("Enter your choice: ");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1:
+                printf("Enter element to be pushed: ");
+                scanf("%d",&num);
+                push(num);
+                break;
+            case 2:
+                pop();
+                break;
+            case 3:
+                display();
+                break;
+            case 4:
+                exit(0);
+            default:
+                printf("Enter valid choice ! \n");
+                break;
+        }
+    }
+}
+
+void push(int element)
+{
+    if(top==NULL)
+    {
+        top=(struct node *)malloc(1*sizeof(struct node));
+        top->link=NULL;
+        top->data=element;
+    }
+    else
+    {
+        temp=(struct node *)malloc(1*sizeof(struct node));
+        temp->link=top;
+        temp->data=element;
+        top=temp;
+    }
+}
+void pop()
+{
+    top1=top;
+    if(top1==NULL)
+    {
+        printf("Empty");
+        return;
+    }
+    else
+    {
+        top1=top1->link;
+        printf("The poped element is %d\n",top->data);
+        free(top);
+        top=top1;
+    }
+}
+void display()
+{
+    top1=top;
+    if(top==NULL)
+    {
+        printf("Stack is Empty");
+        return;
+    }
+    while(top1!=NULL)
+    {
+        printf("%d-->",top1->data);
+        top1=top1->link;
+    }
+    printf("NULL \n");
+}
+
+
+
+/*Stack using linked list
+1.PUSH
+2.POP
+3.Display
+4.Exit
+Enter your choice: 1
+Enter element to be pushed: 12
+Enter your choice: 5
+Enter valid choice ! 
+Enter your choice: 1
+Enter element to be pushed: 23
+Enter your choice: 3
+23-->12-->NULL 
+Enter your choice: 2
+The poped element is 23
+Enter your choice: 3
+12-->NULL 
+Enter your choice: 4*/
